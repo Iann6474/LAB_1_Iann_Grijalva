@@ -1,0 +1,952 @@
+
+Postlab_Iann_Grijalva_23055.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000010  00800100  000004bc  00000550  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000004bc  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000008  00800110  00800110  00000560  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000560  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000590  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000060  00000000  00000000  000005d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000a3d  00000000  00000000  00000630  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007e2  00000000  00000000  0000106d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000582  00000000  00000000  0000184f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000c4  00000000  00000000  00001dd4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000586  00000000  00000000  00001e98  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000294  00000000  00000000  0000241e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000068  00000000  00000000  000026b2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__vector_14>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ec eb       	ldi	r30, 0xBC	; 188
+  7c:	f4 e0       	ldi	r31, 0x04	; 4
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a0 31       	cpi	r26, 0x10	; 16
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a0 e1       	ldi	r26, 0x10	; 16
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a8 31       	cpi	r26, 0x18	; 24
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 47 01 	call	0x28e	; 0x28e <main>
+  9e:	0c 94 5c 02 	jmp	0x4b8	; 0x4b8 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <inicializar_timer0>:
+ * función para inicializar el Timer0 para multiplexación
+ * configura el timer para generar interrupciones periódicas
+ */
+void inicializar_timer0(void) {
+    // configurar Timer0 en modo CTC 
+    TCCR0A = (1 << WGM01);
+  a6:	82 e0       	ldi	r24, 0x02	; 2
+  a8:	84 bd       	out	0x24, r24	; 36
+    
+    // establecer el preescalador a 64
+    TCCR0B = (1 << CS01) | (1 << CS00);
+  aa:	93 e0       	ldi	r25, 0x03	; 3
+  ac:	95 bd       	out	0x25, r25	; 37
+    
+    // valor de comparación para generar interrupciones aproximadamente cada 1ms
+    OCR0A = 249;
+  ae:	99 ef       	ldi	r25, 0xF9	; 249
+  b0:	97 bd       	out	0x27, r25	; 39
+    
+    // habilitar interrupción por comparación
+    TIMSK0 = (1 << OCIE0A);
+  b2:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
+  b6:	08 95       	ret
+
+000000b8 <__vector_14>:
+}
+
+/**
+ * maneja la multiplexación de los displays
+ */
+ISR(TIMER0_COMPA_vect) {
+  b8:	1f 92       	push	r1
+  ba:	0f 92       	push	r0
+  bc:	0f b6       	in	r0, 0x3f	; 63
+  be:	0f 92       	push	r0
+  c0:	11 24       	eor	r1, r1
+  c2:	8f 93       	push	r24
+  c4:	9f 93       	push	r25
+  c6:	ef 93       	push	r30
+  c8:	ff 93       	push	r31
+    // Guardar el estado actual del bit PD7 
+    uint8_t estado_led_comparacion = PORTD & (1 << PIN_LED_COMPARACION);
+  ca:	8b b1       	in	r24, 0x0b	; 11
+  cc:	80 78       	andi	r24, 0x80	; 128
+    
+    // desactivar ambos displays
+    PORTC &= ~((1 << PIN_DISPLAY_1) | (1 << PIN_DISPLAY_2));
+  ce:	98 b1       	in	r25, 0x08	; 8
+  d0:	9f 7c       	andi	r25, 0xCF	; 207
+  d2:	98 b9       	out	0x08, r25	; 8
+    
+    // alternar entre los displays
+    if (display_actual == 0) {
+  d4:	90 91 17 01 	lds	r25, 0x0117	; 0x800117 <display_actual>
+  d8:	91 11       	cpse	r25, r1
+  da:	11 c0       	rjmp	.+34     	; 0xfe <__vector_14+0x46>
+        // mostrar dígito menos significativo (0-F)
+        // Mantener el bit 7 (PIN_LED_COMPARACION) sin cambios
+        PORTD = (PATRONES_7SEG[valor_adc_hex & 0x0F] & 0x7F) | estado_led_comparacion;
+  dc:	e0 91 16 01 	lds	r30, 0x0116	; 0x800116 <valor_adc_hex>
+  e0:	ef 70       	andi	r30, 0x0F	; 15
+  e2:	f0 e0       	ldi	r31, 0x00	; 0
+  e4:	e0 50       	subi	r30, 0x00	; 0
+  e6:	ff 4f       	sbci	r31, 0xFF	; 255
+  e8:	90 81       	ld	r25, Z
+  ea:	9f 77       	andi	r25, 0x7F	; 127
+  ec:	89 2b       	or	r24, r25
+  ee:	8b b9       	out	0x0b, r24	; 11
+        PORTC |= (1 << PIN_DISPLAY_1);
+  f0:	88 b1       	in	r24, 0x08	; 8
+  f2:	80 61       	ori	r24, 0x10	; 16
+  f4:	88 b9       	out	0x08, r24	; 8
+        display_actual = 1;
+  f6:	81 e0       	ldi	r24, 0x01	; 1
+  f8:	80 93 17 01 	sts	0x0117, r24	; 0x800117 <display_actual>
+  fc:	10 c0       	rjmp	.+32     	; 0x11e <__vector_14+0x66>
+    } else {
+        // mostrar dígito más significativo (0-F)
+        // Mantener el bit 7 (PIN_LED_COMPARACION) sin cambios
+        PORTD = (PATRONES_7SEG[(valor_adc_hex >> 4) & 0x0F] & 0x7F) | estado_led_comparacion;
+  fe:	e0 91 16 01 	lds	r30, 0x0116	; 0x800116 <valor_adc_hex>
+ 102:	e2 95       	swap	r30
+ 104:	ef 70       	andi	r30, 0x0F	; 15
+ 106:	f0 e0       	ldi	r31, 0x00	; 0
+ 108:	e0 50       	subi	r30, 0x00	; 0
+ 10a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 10c:	90 81       	ld	r25, Z
+ 10e:	9f 77       	andi	r25, 0x7F	; 127
+ 110:	89 2b       	or	r24, r25
+ 112:	8b b9       	out	0x0b, r24	; 11
+        PORTC |= (1 << PIN_DISPLAY_2);
+ 114:	88 b1       	in	r24, 0x08	; 8
+ 116:	80 62       	ori	r24, 0x20	; 32
+ 118:	88 b9       	out	0x08, r24	; 8
+        display_actual = 0;
+ 11a:	10 92 17 01 	sts	0x0117, r1	; 0x800117 <display_actual>
+    }
+}
+ 11e:	ff 91       	pop	r31
+ 120:	ef 91       	pop	r30
+ 122:	9f 91       	pop	r25
+ 124:	8f 91       	pop	r24
+ 126:	0f 90       	pop	r0
+ 128:	0f be       	out	0x3f, r0	; 63
+ 12a:	0f 90       	pop	r0
+ 12c:	1f 90       	pop	r1
+ 12e:	18 95       	reti
+
+00000130 <inicializar_puertos>:
+/**
+ * función para inicializar los puertos del microcontrolador
+ */
+void inicializar_puertos(void) {
+    // configurar PB0 y PB1 como entradas con resistencias pull-up internas activadas
+    DDRB &= ~((1 << PIN_BOTON_INCREMENTO) | (1 << PIN_BOTON_DECREMENTO));
+ 130:	84 b1       	in	r24, 0x04	; 4
+ 132:	8c 7f       	andi	r24, 0xFC	; 252
+ 134:	84 b9       	out	0x04, r24	; 4
+    PORTB |= (1 << PIN_BOTON_INCREMENTO) | (1 << PIN_BOTON_DECREMENTO);
+ 136:	85 b1       	in	r24, 0x05	; 5
+ 138:	83 60       	ori	r24, 0x03	; 3
+ 13a:	85 b9       	out	0x05, r24	; 5
+    
+    // configurar PB2, PB3, PB4, PB5 como salidas para mostrar parte del valor del contador
+    DDRB |= (1 << PB2) | (1 << PB3) | (1 << PB4) | (1 << PB5);
+ 13c:	84 b1       	in	r24, 0x04	; 4
+ 13e:	8c 63       	ori	r24, 0x3C	; 60
+ 140:	84 b9       	out	0x04, r24	; 4
+    
+    // configurar PC0, PC1, PC2, PC3 como salidas para parte del valor del contador
+    // y PC4, PC5 como salidas para controlar los displays
+    DDRC |= (1 << PC0) | (1 << PC1) | (1 << PC2) | (1 << PC3) | (1 << PIN_DISPLAY_1) | (1 << PIN_DISPLAY_2);
+ 142:	87 b1       	in	r24, 0x07	; 7
+ 144:	8f 63       	ori	r24, 0x3F	; 63
+ 146:	87 b9       	out	0x07, r24	; 7
+    
+    // configurar PD0-PD6 como salidas para los segmentos del display (A-G)
+    // y PD7 como salida para el LED de comparación
+    DDRD |= 0b11111111; // bits 0-7 como salidas
+ 148:	8a b1       	in	r24, 0x0a	; 10
+ 14a:	8f ef       	ldi	r24, 0xFF	; 255
+ 14c:	8a b9       	out	0x0a, r24	; 10
+    
+    // inicializar todas las salidas en nivel bajo (0 lógico)
+    PORTB &= ~((1 << PB2) | (1 << PB3) | (1 << PB4) | (1 << PB5));
+ 14e:	85 b1       	in	r24, 0x05	; 5
+ 150:	83 7c       	andi	r24, 0xC3	; 195
+ 152:	85 b9       	out	0x05, r24	; 5
+    PORTC &= ~((1 << PC0) | (1 << PC1) | (1 << PC2) | (1 << PC3) | (1 << PIN_DISPLAY_1) | (1 << PIN_DISPLAY_2));
+ 154:	88 b1       	in	r24, 0x08	; 8
+ 156:	80 7c       	andi	r24, 0xC0	; 192
+ 158:	88 b9       	out	0x08, r24	; 8
+    PORTD &= ~0b11111111;
+ 15a:	8b b1       	in	r24, 0x0b	; 11
+ 15c:	1b b8       	out	0x0b, r1	; 11
+ 15e:	08 95       	ret
+
+00000160 <inicializar_adc>:
+/**
+ * función para inicializar el ADC
+ */
+void inicializar_adc(void) {
+    // seleccionar AVCC como referencia de voltaje
+    ADMUX = (1 << REFS0);
+ 160:	ec e7       	ldi	r30, 0x7C	; 124
+ 162:	f0 e0       	ldi	r31, 0x00	; 0
+ 164:	80 e4       	ldi	r24, 0x40	; 64
+ 166:	80 83       	st	Z, r24
+    
+    // seleccionar el canal ADC6
+    ADMUX |= 0x06;  // 0b0110
+ 168:	80 81       	ld	r24, Z
+ 16a:	86 60       	ori	r24, 0x06	; 6
+ 16c:	80 83       	st	Z, r24
+    
+    // habilitar ADC, establecer prescaler a 128 para obtener una frecuencia de muestreo adecuada
+    // (16MHz/128 = 125kHz)
+    ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
+ 16e:	87 e8       	ldi	r24, 0x87	; 135
+ 170:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+ 174:	08 95       	ret
+
+00000176 <leer_adc>:
+    // número de muestras para promediar
+    const uint8_t NUM_MUESTRAS = 8;
+    uint32_t suma = 0;
+    
+    // tomar varias muestras y sumarlas
+    for (uint8_t i = 0; i < NUM_MUESTRAS; i++) {
+ 176:	20 e0       	ldi	r18, 0x00	; 0
+ * función para leer el valor del ADC con filtro
+ */
+uint16_t leer_adc(void) {
+    // número de muestras para promediar
+    const uint8_t NUM_MUESTRAS = 8;
+    uint32_t suma = 0;
+ 178:	40 e0       	ldi	r20, 0x00	; 0
+ 17a:	50 e0       	ldi	r21, 0x00	; 0
+ 17c:	ba 01       	movw	r22, r20
+    
+    // tomar varias muestras y sumarlas
+    for (uint8_t i = 0; i < NUM_MUESTRAS; i++) {
+ 17e:	18 c0       	rjmp	.+48     	; 0x1b0 <leer_adc+0x3a>
+        // iniciar conversión
+        ADCSRA |= (1 << ADSC);
+ 180:	ea e7       	ldi	r30, 0x7A	; 122
+ 182:	f0 e0       	ldi	r31, 0x00	; 0
+ 184:	90 81       	ld	r25, Z
+ 186:	90 64       	ori	r25, 0x40	; 64
+ 188:	90 83       	st	Z, r25
+        
+        // esperar hasta que la conversión termine
+        while (ADCSRA & (1 << ADSC));
+ 18a:	90 91 7a 00 	lds	r25, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+ 18e:	96 fd       	sbrc	r25, 6
+ 190:	fc cf       	rjmp	.-8      	; 0x18a <leer_adc+0x14>
+        
+        // sumar la lectura
+        suma += ADC;
+ 192:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7f8078>
+ 196:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+ 19a:	48 0f       	add	r20, r24
+ 19c:	59 1f       	adc	r21, r25
+ 19e:	61 1d       	adc	r22, r1
+ 1a0:	71 1d       	adc	r23, r1
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1a2:	8f e8       	ldi	r24, 0x8F	; 143
+ 1a4:	91 e0       	ldi	r25, 0x01	; 1
+ 1a6:	01 97       	sbiw	r24, 0x01	; 1
+ 1a8:	f1 f7       	brne	.-4      	; 0x1a6 <leer_adc+0x30>
+ 1aa:	00 c0       	rjmp	.+0      	; 0x1ac <leer_adc+0x36>
+ 1ac:	00 00       	nop
+    // número de muestras para promediar
+    const uint8_t NUM_MUESTRAS = 8;
+    uint32_t suma = 0;
+    
+    // tomar varias muestras y sumarlas
+    for (uint8_t i = 0; i < NUM_MUESTRAS; i++) {
+ 1ae:	2f 5f       	subi	r18, 0xFF	; 255
+ 1b0:	28 30       	cpi	r18, 0x08	; 8
+ 1b2:	30 f3       	brcs	.-52     	; 0x180 <leer_adc+0xa>
+        //retraso entre muestras
+        _delay_us(100);
+    }
+    
+    // calcular el promedio
+    return (uint16_t)(suma / NUM_MUESTRAS);
+ 1b4:	db 01       	movw	r26, r22
+ 1b6:	ca 01       	movw	r24, r20
+ 1b8:	68 94       	set
+ 1ba:	12 f8       	bld	r1, 2
+ 1bc:	b6 95       	lsr	r27
+ 1be:	a7 95       	ror	r26
+ 1c0:	97 95       	ror	r25
+ 1c2:	87 95       	ror	r24
+ 1c4:	16 94       	lsr	r1
+ 1c6:	d1 f7       	brne	.-12     	; 0x1bc <leer_adc+0x46>
+}
+ 1c8:	08 95       	ret
+
+000001ca <esta_boton_presionado>:
+ * función para verificar si un botón está presionado 
+ * 1 si el botón está presionado, 0 en caso contrario
+ */
+uint8_t esta_boton_presionado(uint8_t pin_boton) {
+    // verificar si el botón está presionado 
+    if (!(PINB & (1 << pin_boton))) {
+ 1ca:	23 b1       	in	r18, 0x03	; 3
+ 1cc:	30 e0       	ldi	r19, 0x00	; 0
+ 1ce:	02 c0       	rjmp	.+4      	; 0x1d4 <esta_boton_presionado+0xa>
+ 1d0:	35 95       	asr	r19
+ 1d2:	27 95       	ror	r18
+ 1d4:	8a 95       	dec	r24
+ 1d6:	e2 f7       	brpl	.-8      	; 0x1d0 <esta_boton_presionado+0x6>
+ 1d8:	20 fd       	sbrc	r18, 0
+ 1da:	02 c0       	rjmp	.+4      	; 0x1e0 <esta_boton_presionado+0x16>
+        return 1; // botón presionado
+ 1dc:	81 e0       	ldi	r24, 0x01	; 1
+ 1de:	08 95       	ret
+    }
+    return 0; // botón no presionado
+ 1e0:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 1e2:	08 95       	ret
+
+000001e4 <actualizar_visualizacion_contador>:
+ * función para actualizar la visualización del valor del contador en los pines de salida
+ * cada bit del valor del contador se mapea a un pin específico
+ */
+void actualizar_visualizacion_contador(uint8_t valor_contador) {
+    // bit 0 (bit menos significativo) - PB5
+    if (valor_contador & 0x01) {
+ 1e4:	80 ff       	sbrs	r24, 0
+ 1e6:	04 c0       	rjmp	.+8      	; 0x1f0 <actualizar_visualizacion_contador+0xc>
+        PORTB |= (1 << PB5);
+ 1e8:	95 b1       	in	r25, 0x05	; 5
+ 1ea:	90 62       	ori	r25, 0x20	; 32
+ 1ec:	95 b9       	out	0x05, r25	; 5
+ 1ee:	03 c0       	rjmp	.+6      	; 0x1f6 <actualizar_visualizacion_contador+0x12>
+    } else {
+        PORTB &= ~(1 << PB5);
+ 1f0:	95 b1       	in	r25, 0x05	; 5
+ 1f2:	9f 7d       	andi	r25, 0xDF	; 223
+ 1f4:	95 b9       	out	0x05, r25	; 5
+    }
+    
+    // bit 1 - PC0
+    if (valor_contador & 0x02) {
+ 1f6:	81 ff       	sbrs	r24, 1
+ 1f8:	04 c0       	rjmp	.+8      	; 0x202 <actualizar_visualizacion_contador+0x1e>
+        PORTC |= (1 << PC0);
+ 1fa:	98 b1       	in	r25, 0x08	; 8
+ 1fc:	91 60       	ori	r25, 0x01	; 1
+ 1fe:	98 b9       	out	0x08, r25	; 8
+ 200:	03 c0       	rjmp	.+6      	; 0x208 <actualizar_visualizacion_contador+0x24>
+    } else {
+        PORTC &= ~(1 << PC0);
+ 202:	98 b1       	in	r25, 0x08	; 8
+ 204:	9e 7f       	andi	r25, 0xFE	; 254
+ 206:	98 b9       	out	0x08, r25	; 8
+    }
+    
+    // bit 2 - PC1
+    if (valor_contador & 0x04) {
+ 208:	82 ff       	sbrs	r24, 2
+ 20a:	04 c0       	rjmp	.+8      	; 0x214 <actualizar_visualizacion_contador+0x30>
+        PORTC |= (1 << PC1);
+ 20c:	98 b1       	in	r25, 0x08	; 8
+ 20e:	92 60       	ori	r25, 0x02	; 2
+ 210:	98 b9       	out	0x08, r25	; 8
+ 212:	03 c0       	rjmp	.+6      	; 0x21a <actualizar_visualizacion_contador+0x36>
+    } else {
+        PORTC &= ~(1 << PC1);
+ 214:	98 b1       	in	r25, 0x08	; 8
+ 216:	9d 7f       	andi	r25, 0xFD	; 253
+ 218:	98 b9       	out	0x08, r25	; 8
+    }
+    
+    // bit 3 - PC2
+    if (valor_contador & 0x08) {
+ 21a:	83 ff       	sbrs	r24, 3
+ 21c:	04 c0       	rjmp	.+8      	; 0x226 <actualizar_visualizacion_contador+0x42>
+        PORTC |= (1 << PC2);
+ 21e:	98 b1       	in	r25, 0x08	; 8
+ 220:	94 60       	ori	r25, 0x04	; 4
+ 222:	98 b9       	out	0x08, r25	; 8
+ 224:	03 c0       	rjmp	.+6      	; 0x22c <actualizar_visualizacion_contador+0x48>
+    } else {
+        PORTC &= ~(1 << PC2);
+ 226:	98 b1       	in	r25, 0x08	; 8
+ 228:	9b 7f       	andi	r25, 0xFB	; 251
+ 22a:	98 b9       	out	0x08, r25	; 8
+    }
+    
+    // bit 4 - PC3
+    if (valor_contador & 0x10) {
+ 22c:	84 ff       	sbrs	r24, 4
+ 22e:	04 c0       	rjmp	.+8      	; 0x238 <actualizar_visualizacion_contador+0x54>
+        PORTC |= (1 << PC3);
+ 230:	98 b1       	in	r25, 0x08	; 8
+ 232:	98 60       	ori	r25, 0x08	; 8
+ 234:	98 b9       	out	0x08, r25	; 8
+ 236:	03 c0       	rjmp	.+6      	; 0x23e <actualizar_visualizacion_contador+0x5a>
+    } else {
+        PORTC &= ~(1 << PC3);
+ 238:	98 b1       	in	r25, 0x08	; 8
+ 23a:	97 7f       	andi	r25, 0xF7	; 247
+ 23c:	98 b9       	out	0x08, r25	; 8
+    }
+    
+    // bit 5 - PB4
+    if (valor_contador & 0x20) {
+ 23e:	85 ff       	sbrs	r24, 5
+ 240:	04 c0       	rjmp	.+8      	; 0x24a <actualizar_visualizacion_contador+0x66>
+        PORTB |= (1 << PB4);
+ 242:	95 b1       	in	r25, 0x05	; 5
+ 244:	90 61       	ori	r25, 0x10	; 16
+ 246:	95 b9       	out	0x05, r25	; 5
+ 248:	03 c0       	rjmp	.+6      	; 0x250 <actualizar_visualizacion_contador+0x6c>
+    } else {
+        PORTB &= ~(1 << PB4);
+ 24a:	95 b1       	in	r25, 0x05	; 5
+ 24c:	9f 7e       	andi	r25, 0xEF	; 239
+ 24e:	95 b9       	out	0x05, r25	; 5
+    }
+    
+    // bit 6 - PB3
+    if (valor_contador & 0x40) {
+ 250:	86 ff       	sbrs	r24, 6
+ 252:	04 c0       	rjmp	.+8      	; 0x25c <actualizar_visualizacion_contador+0x78>
+        PORTB |= (1 << PB3);
+ 254:	95 b1       	in	r25, 0x05	; 5
+ 256:	98 60       	ori	r25, 0x08	; 8
+ 258:	95 b9       	out	0x05, r25	; 5
+ 25a:	03 c0       	rjmp	.+6      	; 0x262 <actualizar_visualizacion_contador+0x7e>
+    } else {
+        PORTB &= ~(1 << PB3);
+ 25c:	95 b1       	in	r25, 0x05	; 5
+ 25e:	97 7f       	andi	r25, 0xF7	; 247
+ 260:	95 b9       	out	0x05, r25	; 5
+    }
+    
+    // bit 7 (bit más significativo) - PB2
+    if (valor_contador & 0x80) {
+ 262:	88 23       	and	r24, r24
+ 264:	24 f4       	brge	.+8      	; 0x26e <actualizar_visualizacion_contador+0x8a>
+        PORTB |= (1 << PB2);
+ 266:	85 b1       	in	r24, 0x05	; 5
+ 268:	84 60       	ori	r24, 0x04	; 4
+ 26a:	85 b9       	out	0x05, r24	; 5
+ 26c:	08 95       	ret
+    } else {
+        PORTB &= ~(1 << PB2);
+ 26e:	85 b1       	in	r24, 0x05	; 5
+ 270:	8b 7f       	andi	r24, 0xFB	; 251
+ 272:	85 b9       	out	0x05, r24	; 5
+ 274:	08 95       	ret
+
+00000276 <actualizar_led_comparacion>:
+ * función para comparar el valor del contador binario con el contador hexadecimal
+ * y actualizar el LED indicador en PD7
+ */
+void actualizar_led_comparacion(uint8_t valor_contador_binario, uint8_t valor_contador_hex) {
+    // Asegurar que las interrupciones estén deshabilitadas durante la actualización
+    cli();
+ 276:	f8 94       	cli
+    
+    // comparar los valores y actualizar el LED en PD7
+    if (valor_contador_hex > valor_contador_binario) {
+ 278:	86 17       	cp	r24, r22
+ 27a:	20 f4       	brcc	.+8      	; 0x284 <actualizar_led_comparacion+0xe>
+        // encender el LED si el contador hexadecimal es mayor
+        PORTD |= (1 << PIN_LED_COMPARACION);
+ 27c:	8b b1       	in	r24, 0x0b	; 11
+ 27e:	80 68       	ori	r24, 0x80	; 128
+ 280:	8b b9       	out	0x0b, r24	; 11
+ 282:	03 c0       	rjmp	.+6      	; 0x28a <actualizar_led_comparacion+0x14>
+    } else {
+        // apagar el LED si el contador hexadecimal es menor o igual
+        PORTD &= ~(1 << PIN_LED_COMPARACION);
+ 284:	8b b1       	in	r24, 0x0b	; 11
+ 286:	8f 77       	andi	r24, 0x7F	; 127
+ 288:	8b b9       	out	0x0b, r24	; 11
+    }
+    
+    // Rehabilitar interrupciones
+    sei();
+ 28a:	78 94       	sei
+ 28c:	08 95       	ret
+
+0000028e <main>:
+    uint8_t incremento_presionado = 0;   // flag para evitar incrementos múltiples
+    uint8_t decremento_presionado = 0;   // flag para evitar decrementos múltiples
+    uint16_t valor_adc_actual = 0;       // valor actual del ADC 
+    
+    // inicializar configuración de los puertos ADC y Timer
+    inicializar_puertos();
+ 28e:	0e 94 98 00 	call	0x130	; 0x130 <inicializar_puertos>
+    inicializar_adc();
+ 292:	0e 94 b0 00 	call	0x160	; 0x160 <inicializar_adc>
+    inicializar_timer0();
+ 296:	0e 94 53 00 	call	0xa6	; 0xa6 <inicializar_timer0>
+    
+    // mostrar el valor inicial del contador 
+    actualizar_visualizacion_contador(contador);
+ 29a:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <contador>
+ 29e:	0e 94 f2 00 	call	0x1e4	; 0x1e4 <actualizar_visualizacion_contador>
+    
+    // inicializar el LED de comparación antes de habilitar las interrupciones
+    if (valor_adc_hex > contador) {
+ 2a2:	90 91 16 01 	lds	r25, 0x0116	; 0x800116 <valor_adc_hex>
+ 2a6:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <contador>
+ 2aa:	89 17       	cp	r24, r25
+ 2ac:	20 f4       	brcc	.+8      	; 0x2b6 <main+0x28>
+        PORTD |= (1 << PIN_LED_COMPARACION);
+ 2ae:	8b b1       	in	r24, 0x0b	; 11
+ 2b0:	80 68       	ori	r24, 0x80	; 128
+ 2b2:	8b b9       	out	0x0b, r24	; 11
+ 2b4:	03 c0       	rjmp	.+6      	; 0x2bc <main+0x2e>
+    } else {
+        PORTD &= ~(1 << PIN_LED_COMPARACION);
+ 2b6:	8b b1       	in	r24, 0x0b	; 11
+ 2b8:	8f 77       	andi	r24, 0x7F	; 127
+ 2ba:	8b b9       	out	0x0b, r24	; 11
+    }
+    
+    // habilitar interrupciones globales
+    sei();
+ 2bc:	78 94       	sei
+ * función principal del programa
+ */
+int main(void) {
+    // declaración e inicialización de variables
+    uint8_t incremento_presionado = 0;   // flag para evitar incrementos múltiples
+    uint8_t decremento_presionado = 0;   // flag para evitar decrementos múltiples
+ 2be:	d0 e0       	ldi	r29, 0x00	; 0
+/**
+ * función principal del programa
+ */
+int main(void) {
+    // declaración e inicialización de variables
+    uint8_t incremento_presionado = 0;   // flag para evitar incrementos múltiples
+ 2c0:	c0 e0       	ldi	r28, 0x00	; 0
+    sei();
+    
+    // bucle infinito principal del programa
+    while (1) {
+        // leer el valor del ADC
+        valor_adc_actual = leer_adc();
+ 2c2:	0e 94 bb 00 	call	0x176	; 0x176 <leer_adc>
+        // mapear el valor del ADC con compensación de rango específica
+        uint16_t valor_compensado;
+        
+        // ajuste específico para potenciómetro de 100K para capturar el rango completo incluyendo FF
+        // si el valor es muy bajo menor a 20 forzarlo a 0
+        if (valor_adc_actual < 20) {
+ 2c6:	84 31       	cpi	r24, 0x14	; 20
+ 2c8:	91 05       	cpc	r25, r1
+ 2ca:	b0 f0       	brcs	.+44     	; 0x2f8 <main+0x6a>
+            valor_compensado = 0;
+        }
+        // si el valor es muy alto  forzarlo a 1023 para garantizar que llegue a FF
+        else if (valor_adc_actual > 1000) {
+ 2cc:	89 3e       	cpi	r24, 0xE9	; 233
+ 2ce:	23 e0       	ldi	r18, 0x03	; 3
+ 2d0:	92 07       	cpc	r25, r18
+ 2d2:	a8 f4       	brcc	.+42     	; 0x2fe <main+0x70>
+            valor_compensado = 1023;
+        }
+        // de lo contrario, hacer un mapeo más fino del rango efectivo (20-1000) a (0-1023)
+        else {
+            // aplicar un factor de escala ligeramente mayor para asegurar que llegue a 1023
+            valor_compensado = ((uint32_t)(valor_adc_actual - 20) * 1030UL) / (1000UL - 20UL);
+ 2d4:	9c 01       	movw	r18, r24
+ 2d6:	24 51       	subi	r18, 0x14	; 20
+ 2d8:	31 09       	sbc	r19, r1
+ 2da:	a6 e0       	ldi	r26, 0x06	; 6
+ 2dc:	b4 e0       	ldi	r27, 0x04	; 4
+ 2de:	0e 94 42 02 	call	0x484	; 0x484 <__umulhisi3>
+ 2e2:	24 ed       	ldi	r18, 0xD4	; 212
+ 2e4:	33 e0       	ldi	r19, 0x03	; 3
+ 2e6:	40 e0       	ldi	r20, 0x00	; 0
+ 2e8:	50 e0       	ldi	r21, 0x00	; 0
+ 2ea:	0e 94 20 02 	call	0x440	; 0x440 <__udivmodsi4>
+            // saturar a 1023 si el cálculo resultara en un valor mayor
+            if (valor_compensado > 1023) {
+ 2ee:	21 15       	cp	r18, r1
+ 2f0:	84 e0       	ldi	r24, 0x04	; 4
+ 2f2:	38 07       	cpc	r19, r24
+ 2f4:	38 f4       	brcc	.+14     	; 0x304 <main+0x76>
+ 2f6:	08 c0       	rjmp	.+16     	; 0x308 <main+0x7a>
+        uint16_t valor_compensado;
+        
+        // ajuste específico para potenciómetro de 100K para capturar el rango completo incluyendo FF
+        // si el valor es muy bajo menor a 20 forzarlo a 0
+        if (valor_adc_actual < 20) {
+            valor_compensado = 0;
+ 2f8:	20 e0       	ldi	r18, 0x00	; 0
+ 2fa:	30 e0       	ldi	r19, 0x00	; 0
+ 2fc:	05 c0       	rjmp	.+10     	; 0x308 <main+0x7a>
+        }
+        // si el valor es muy alto  forzarlo a 1023 para garantizar que llegue a FF
+        else if (valor_adc_actual > 1000) {
+            valor_compensado = 1023;
+ 2fe:	2f ef       	ldi	r18, 0xFF	; 255
+ 300:	33 e0       	ldi	r19, 0x03	; 3
+ 302:	02 c0       	rjmp	.+4      	; 0x308 <main+0x7a>
+        else {
+            // aplicar un factor de escala ligeramente mayor para asegurar que llegue a 1023
+            valor_compensado = ((uint32_t)(valor_adc_actual - 20) * 1030UL) / (1000UL - 20UL);
+            // saturar a 1023 si el cálculo resultara en un valor mayor
+            if (valor_compensado > 1023) {
+                valor_compensado = 1023;
+ 304:	2f ef       	ldi	r18, 0xFF	; 255
+ 306:	33 e0       	ldi	r19, 0x03	; 3
+            }
+        }
+        
+      
+        // dar más peso al valor anterior para una mejor estabilidad
+        valor_filtrado = (valor_filtrado * 7 + valor_compensado) / 8;
+ 308:	40 91 11 01 	lds	r20, 0x0111	; 0x800111 <valor_filtrado.1934>
+ 30c:	50 91 12 01 	lds	r21, 0x0112	; 0x800112 <valor_filtrado.1934+0x1>
+ 310:	60 91 13 01 	lds	r22, 0x0113	; 0x800113 <valor_filtrado.1934+0x2>
+ 314:	70 91 14 01 	lds	r23, 0x0114	; 0x800114 <valor_filtrado.1934+0x3>
+ 318:	db 01       	movw	r26, r22
+ 31a:	ca 01       	movw	r24, r20
+ 31c:	88 0f       	add	r24, r24
+ 31e:	99 1f       	adc	r25, r25
+ 320:	aa 1f       	adc	r26, r26
+ 322:	bb 1f       	adc	r27, r27
+ 324:	88 0f       	add	r24, r24
+ 326:	99 1f       	adc	r25, r25
+ 328:	aa 1f       	adc	r26, r26
+ 32a:	bb 1f       	adc	r27, r27
+ 32c:	88 0f       	add	r24, r24
+ 32e:	99 1f       	adc	r25, r25
+ 330:	aa 1f       	adc	r26, r26
+ 332:	bb 1f       	adc	r27, r27
+ 334:	84 1b       	sub	r24, r20
+ 336:	95 0b       	sbc	r25, r21
+ 338:	a6 0b       	sbc	r26, r22
+ 33a:	b7 0b       	sbc	r27, r23
+ 33c:	82 0f       	add	r24, r18
+ 33e:	93 1f       	adc	r25, r19
+ 340:	a1 1d       	adc	r26, r1
+ 342:	b1 1d       	adc	r27, r1
+ 344:	68 94       	set
+ 346:	12 f8       	bld	r1, 2
+ 348:	b6 95       	lsr	r27
+ 34a:	a7 95       	ror	r26
+ 34c:	97 95       	ror	r25
+ 34e:	87 95       	ror	r24
+ 350:	16 94       	lsr	r1
+ 352:	d1 f7       	brne	.-12     	; 0x348 <main+0xba>
+ 354:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <valor_filtrado.1934>
+ 358:	90 93 12 01 	sts	0x0112, r25	; 0x800112 <valor_filtrado.1934+0x1>
+ 35c:	a0 93 13 01 	sts	0x0113, r26	; 0x800113 <valor_filtrado.1934+0x2>
+ 360:	b0 93 14 01 	sts	0x0114, r27	; 0x800114 <valor_filtrado.1934+0x3>
+        
+        // cuando el valor está cerca del máximo, ayudar a que llegue a FF
+        if (valor_compensado > 1020) {
+ 364:	2d 3f       	cpi	r18, 0xFD	; 253
+ 366:	33 40       	sbci	r19, 0x03	; 3
+ 368:	60 f0       	brcs	.+24     	; 0x382 <main+0xf4>
+            valor_filtrado = 1023; // forzar al máximo para llegar a FF
+ 36a:	8f ef       	ldi	r24, 0xFF	; 255
+ 36c:	93 e0       	ldi	r25, 0x03	; 3
+ 36e:	a0 e0       	ldi	r26, 0x00	; 0
+ 370:	b0 e0       	ldi	r27, 0x00	; 0
+ 372:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <valor_filtrado.1934>
+ 376:	90 93 12 01 	sts	0x0112, r25	; 0x800112 <valor_filtrado.1934+0x1>
+ 37a:	a0 93 13 01 	sts	0x0113, r26	; 0x800113 <valor_filtrado.1934+0x2>
+ 37e:	b0 93 14 01 	sts	0x0114, r27	; 0x800114 <valor_filtrado.1934+0x3>
+        }
+        
+        // convertir a rango 0-255 para representación hexadecimal
+        uint8_t nuevo_valor_hex = (uint8_t)((valor_filtrado * 255UL) / 1023UL);
+ 382:	20 91 11 01 	lds	r18, 0x0111	; 0x800111 <valor_filtrado.1934>
+ 386:	30 91 12 01 	lds	r19, 0x0112	; 0x800112 <valor_filtrado.1934+0x1>
+ 38a:	40 91 13 01 	lds	r20, 0x0113	; 0x800113 <valor_filtrado.1934+0x2>
+ 38e:	50 91 14 01 	lds	r21, 0x0114	; 0x800114 <valor_filtrado.1934+0x3>
+ 392:	af ef       	ldi	r26, 0xFF	; 255
+ 394:	b0 e0       	ldi	r27, 0x00	; 0
+ 396:	0e 94 51 02 	call	0x4a2	; 0x4a2 <__muluhisi3>
+ 39a:	2f ef       	ldi	r18, 0xFF	; 255
+ 39c:	33 e0       	ldi	r19, 0x03	; 3
+ 39e:	40 e0       	ldi	r20, 0x00	; 0
+ 3a0:	50 e0       	ldi	r21, 0x00	; 0
+ 3a2:	0e 94 20 02 	call	0x440	; 0x440 <__udivmodsi4>
+        
+        // solo actualizar cuando el valor sea realmente diferente
+        if (nuevo_valor_hex != valor_adc_hex) {
+ 3a6:	80 91 16 01 	lds	r24, 0x0116	; 0x800116 <valor_adc_hex>
+ 3aa:	82 17       	cp	r24, r18
+ 3ac:	91 f0       	breq	.+36     	; 0x3d2 <main+0x144>
+            // agregar contador para evitar actualización si es solo un pico 
+            contador_estabilidad++;
+ 3ae:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <__data_end>
+ 3b2:	8f 5f       	subi	r24, 0xFF	; 255
+ 3b4:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <__data_end>
+            if (contador_estabilidad >= 3) { // el valor debe ser estable por al menos 3 ciclos
+ 3b8:	83 30       	cpi	r24, 0x03	; 3
+ 3ba:	68 f0       	brcs	.+26     	; 0x3d6 <main+0x148>
+                valor_adc_hex = nuevo_valor_hex;
+ 3bc:	20 93 16 01 	sts	0x0116, r18	; 0x800116 <valor_adc_hex>
+                contador_estabilidad = 0;
+ 3c0:	10 92 10 01 	sts	0x0110, r1	; 0x800110 <__data_end>
+                
+                // actualizar el LED de comparación al cambiar el valor del ADC
+                actualizar_led_comparacion(contador, valor_adc_hex);
+ 3c4:	60 91 16 01 	lds	r22, 0x0116	; 0x800116 <valor_adc_hex>
+ 3c8:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <contador>
+ 3cc:	0e 94 3b 01 	call	0x276	; 0x276 <actualizar_led_comparacion>
+ 3d0:	02 c0       	rjmp	.+4      	; 0x3d6 <main+0x148>
+            }
+        } else {
+            contador_estabilidad = 0; // resetear contador si el valor es igual
+ 3d2:	10 92 10 01 	sts	0x0110, r1	; 0x800110 <__data_end>
+        }
+        
+        // verificar botones para el contador
+        if (esta_boton_presionado(PIN_BOTON_INCREMENTO)) {
+ 3d6:	80 e0       	ldi	r24, 0x00	; 0
+ 3d8:	0e 94 e5 00 	call	0x1ca	; 0x1ca <esta_boton_presionado>
+ 3dc:	88 23       	and	r24, r24
+ 3de:	89 f0       	breq	.+34     	; 0x402 <__EEPROM_REGION_LENGTH__+0x2>
+            if (!incremento_presionado) {
+ 3e0:	c1 11       	cpse	r28, r1
+ 3e2:	10 c0       	rjmp	.+32     	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
+                contador++;
+ 3e4:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <contador>
+ 3e8:	8f 5f       	subi	r24, 0xFF	; 255
+ 3ea:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <contador>
+                actualizar_visualizacion_contador(contador);
+ 3ee:	0e 94 f2 00 	call	0x1e4	; 0x1e4 <actualizar_visualizacion_contador>
+                incremento_presionado = 1;
+                
+                // actualizar el LED de comparación al cambiar el contador
+                actualizar_led_comparacion(contador, valor_adc_hex);
+ 3f2:	60 91 16 01 	lds	r22, 0x0116	; 0x800116 <valor_adc_hex>
+ 3f6:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <contador>
+ 3fa:	0e 94 3b 01 	call	0x276	; 0x276 <actualizar_led_comparacion>
+        // verificar botones para el contador
+        if (esta_boton_presionado(PIN_BOTON_INCREMENTO)) {
+            if (!incremento_presionado) {
+                contador++;
+                actualizar_visualizacion_contador(contador);
+                incremento_presionado = 1;
+ 3fe:	c1 e0       	ldi	r28, 0x01	; 1
+ 400:	01 c0       	rjmp	.+2      	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
+                
+                // actualizar el LED de comparación al cambiar el contador
+                actualizar_led_comparacion(contador, valor_adc_hex);
+            }
+        } else {
+            incremento_presionado = 0;
+ 402:	c0 e0       	ldi	r28, 0x00	; 0
+        }
+        
+        if (esta_boton_presionado(PIN_BOTON_DECREMENTO)) {
+ 404:	81 e0       	ldi	r24, 0x01	; 1
+ 406:	0e 94 e5 00 	call	0x1ca	; 0x1ca <esta_boton_presionado>
+ 40a:	88 23       	and	r24, r24
+ 40c:	89 f0       	breq	.+34     	; 0x430 <__EEPROM_REGION_LENGTH__+0x30>
+            if (!decremento_presionado) {
+ 40e:	d1 11       	cpse	r29, r1
+ 410:	10 c0       	rjmp	.+32     	; 0x432 <__EEPROM_REGION_LENGTH__+0x32>
+                contador--;
+ 412:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <contador>
+ 416:	81 50       	subi	r24, 0x01	; 1
+ 418:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <contador>
+                actualizar_visualizacion_contador(contador);
+ 41c:	0e 94 f2 00 	call	0x1e4	; 0x1e4 <actualizar_visualizacion_contador>
+                decremento_presionado = 1;
+                
+                // actualizar el LED de comparación al cambiar el contador
+                actualizar_led_comparacion(contador, valor_adc_hex);
+ 420:	60 91 16 01 	lds	r22, 0x0116	; 0x800116 <valor_adc_hex>
+ 424:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <contador>
+ 428:	0e 94 3b 01 	call	0x276	; 0x276 <actualizar_led_comparacion>
+        
+        if (esta_boton_presionado(PIN_BOTON_DECREMENTO)) {
+            if (!decremento_presionado) {
+                contador--;
+                actualizar_visualizacion_contador(contador);
+                decremento_presionado = 1;
+ 42c:	d1 e0       	ldi	r29, 0x01	; 1
+ 42e:	01 c0       	rjmp	.+2      	; 0x432 <__EEPROM_REGION_LENGTH__+0x32>
+                
+                // actualizar el LED de comparación al cambiar el contador
+                actualizar_led_comparacion(contador, valor_adc_hex);
+            }
+        } else {
+            decremento_presionado = 0;
+ 430:	d0 e0       	ldi	r29, 0x00	; 0
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 432:	8f e3       	ldi	r24, 0x3F	; 63
+ 434:	9c e9       	ldi	r25, 0x9C	; 156
+ 436:	01 97       	sbiw	r24, 0x01	; 1
+ 438:	f1 f7       	brne	.-4      	; 0x436 <__EEPROM_REGION_LENGTH__+0x36>
+ 43a:	00 c0       	rjmp	.+0      	; 0x43c <__EEPROM_REGION_LENGTH__+0x3c>
+ 43c:	00 00       	nop
+ 43e:	41 cf       	rjmp	.-382    	; 0x2c2 <main+0x34>
+
+00000440 <__udivmodsi4>:
+ 440:	a1 e2       	ldi	r26, 0x21	; 33
+ 442:	1a 2e       	mov	r1, r26
+ 444:	aa 1b       	sub	r26, r26
+ 446:	bb 1b       	sub	r27, r27
+ 448:	fd 01       	movw	r30, r26
+ 44a:	0d c0       	rjmp	.+26     	; 0x466 <__udivmodsi4_ep>
+
+0000044c <__udivmodsi4_loop>:
+ 44c:	aa 1f       	adc	r26, r26
+ 44e:	bb 1f       	adc	r27, r27
+ 450:	ee 1f       	adc	r30, r30
+ 452:	ff 1f       	adc	r31, r31
+ 454:	a2 17       	cp	r26, r18
+ 456:	b3 07       	cpc	r27, r19
+ 458:	e4 07       	cpc	r30, r20
+ 45a:	f5 07       	cpc	r31, r21
+ 45c:	20 f0       	brcs	.+8      	; 0x466 <__udivmodsi4_ep>
+ 45e:	a2 1b       	sub	r26, r18
+ 460:	b3 0b       	sbc	r27, r19
+ 462:	e4 0b       	sbc	r30, r20
+ 464:	f5 0b       	sbc	r31, r21
+
+00000466 <__udivmodsi4_ep>:
+ 466:	66 1f       	adc	r22, r22
+ 468:	77 1f       	adc	r23, r23
+ 46a:	88 1f       	adc	r24, r24
+ 46c:	99 1f       	adc	r25, r25
+ 46e:	1a 94       	dec	r1
+ 470:	69 f7       	brne	.-38     	; 0x44c <__udivmodsi4_loop>
+ 472:	60 95       	com	r22
+ 474:	70 95       	com	r23
+ 476:	80 95       	com	r24
+ 478:	90 95       	com	r25
+ 47a:	9b 01       	movw	r18, r22
+ 47c:	ac 01       	movw	r20, r24
+ 47e:	bd 01       	movw	r22, r26
+ 480:	cf 01       	movw	r24, r30
+ 482:	08 95       	ret
+
+00000484 <__umulhisi3>:
+ 484:	a2 9f       	mul	r26, r18
+ 486:	b0 01       	movw	r22, r0
+ 488:	b3 9f       	mul	r27, r19
+ 48a:	c0 01       	movw	r24, r0
+ 48c:	a3 9f       	mul	r26, r19
+ 48e:	70 0d       	add	r23, r0
+ 490:	81 1d       	adc	r24, r1
+ 492:	11 24       	eor	r1, r1
+ 494:	91 1d       	adc	r25, r1
+ 496:	b2 9f       	mul	r27, r18
+ 498:	70 0d       	add	r23, r0
+ 49a:	81 1d       	adc	r24, r1
+ 49c:	11 24       	eor	r1, r1
+ 49e:	91 1d       	adc	r25, r1
+ 4a0:	08 95       	ret
+
+000004a2 <__muluhisi3>:
+ 4a2:	0e 94 42 02 	call	0x484	; 0x484 <__umulhisi3>
+ 4a6:	a5 9f       	mul	r26, r21
+ 4a8:	90 0d       	add	r25, r0
+ 4aa:	b4 9f       	mul	r27, r20
+ 4ac:	90 0d       	add	r25, r0
+ 4ae:	a4 9f       	mul	r26, r20
+ 4b0:	80 0d       	add	r24, r0
+ 4b2:	91 1d       	adc	r25, r1
+ 4b4:	11 24       	eor	r1, r1
+ 4b6:	08 95       	ret
+
+000004b8 <_exit>:
+ 4b8:	f8 94       	cli
+
+000004ba <__stop_program>:
+ 4ba:	ff cf       	rjmp	.-2      	; 0x4ba <__stop_program>
